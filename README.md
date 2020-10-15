@@ -15,6 +15,4 @@ npm install
 npm start
 ```
 
-Then browse to `localhost:5000`. (You can run the UV on regular port 80, we're just using 5000 to test on localhost).
-
-Video guide: https://youtu.be/wHK5DmMYXZE
+Then browse to `localhost:42001`. (This test instance on port 42001, already installed UV running on port 5000).
