@@ -1,7 +1,5 @@
 Fork of UniversalViewer/uv-hello-world that incorporates the manifest selection functionality from UniversalViewer/examples.
 
-### 👋 🌎
-
 #### Prerequisites
 
 - [Git](https://git-scm.com/)
@@ -10,7 +8,7 @@ Fork of UniversalViewer/uv-hello-world that incorporates the manifest selection 
 Once these are installed, clone this repository to your file system, then run the following commands in your terminal:
 
 ```
-cd uv-hello-world
+cd bfi_universal_viewer
 npm install
 npm start
 ```
