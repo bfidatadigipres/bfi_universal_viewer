@@ -1,6 +1,6 @@
 #!/bin/bash
 
-count=$(pgrep -fc test_universal_viewer)
+count=$(pgrep -fc bfi-universal-viewer)
 
 if (( $count > 0))
 then
