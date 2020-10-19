@@ -3,6 +3,7 @@ body {
     padding: 0px;
     width: 100vw;
     height: 100vh;
+    background-color: black;
 }
 
 #uv {
@@ -11,8 +12,7 @@ body {
 }
 
 #options {
-    background-color: black;
     margin: 0px;
-    padding: 10px;
+    padding: 0px;
     height: 8%;
 }
