@@ -1,3 +1,4 @@
 node_modules
 uv
 manifests.json
+.DS_Store
