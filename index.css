@@ -3,7 +3,12 @@ body {
     padding: 0px;
     width: 100vw;
     height: 100vh;
-    background-color: black;
+    background-color: #000000;
+}
+
+.uv:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 #uv {
@@ -12,7 +17,53 @@ body {
 }
 
 #options {
-    margin: 0px;
+    margin: 0 0 0 10px;
     padding: 0px;
     height: 8%;
+}
+
+#manifestSelect {
+    width: 300px;
+    margin: 1px 0 0 0;
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    padding: 0;
+    border: none;
+}
+
+#manifest {
+    width: 300px;
+    margin: 1px 0 0 0;
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 0 0 5px;
+    border: none;
+    color: #565656;
+    background-color: #C7C7C7;
+}
+
+#setManifestButton {
+    display: inline-block;
+    padding: 5px 5px;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    color: #ffffff;
+    background-color: #14a4c3;
+    border-color: #14a4c3;
+}
+
+#setManifestButton:hover,
+#setManifestButton:focus,
+#setManifestButton:active {
+    color: #ffffff;
+    background-color: #10859e;
+    border-color: #0e758b;
 }
