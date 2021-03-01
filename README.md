@@ -4,6 +4,7 @@ Fork of UniversalViewer/uv-hello-world that incorporates the manifest selection 
 
 - [Git](https://git-scm.com/)
 - [Node](https://nodejs.org/)
+- [NPM](https://www.npmjs.com/)
 
 Once these are installed, git clone this repository to your file system, then run the following commands in your terminal:
 
