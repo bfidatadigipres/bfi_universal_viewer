@@ -1,4 +1,4 @@
-Fork of UniversalViewer/uv-hello-world that incorporates the Manifest URL-parsing functionality from UniversalViewer/examples.
+Fork of UniversalViewer/uv-hello-world that incorporates the Manifest URL-parsing functionality from UniversalViewer/examples - which lets you open the UV page at a  specific Manifest by passing the Manifest in the URL. 
 
 #### Prerequisites
 
