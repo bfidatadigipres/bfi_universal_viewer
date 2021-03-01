@@ -14,6 +14,6 @@ npm install
 npm start
 ```
 
-Then browse to `localhost:42001`. (This test instance on port 42001, already installed UV running on port 5000).
+Then browse to `localhost:42001` or `172.18.7.xx:42001`(This test instance on port 42001, already installed UV running on port 5000).
 
-The uv_start.sh script can be run on crontab to check whether the universal viewer is running, and start it if it is not.
+The `uv_start.sh` script can be run on crontab to check whether the Universal Viewer is running, and start it if it is not.
