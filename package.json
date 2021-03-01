@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UniversalViewer/uv-hello-world.git"
+    "url": "git+https://github.com/bfidatadigipres/bfi_universal_viewer.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/UniversalViewer/uv-hello-world/issues"
+    "url": "https://github.com/bfidatadigipres/bfi_universal_viewer/issues"
   },
-  "homepage": "https://github.com/UniversalViewer/uv-hello-world#readme",
+  "homepage": "https://github.com/bfidatadigipres/bfi_universal_viewer#readme",
   "dependencies": {
     "http-server": "^0.12.3",
     "universalviewer": "^3.0.22"
