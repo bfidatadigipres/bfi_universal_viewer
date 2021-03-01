@@ -1,4 +1,4 @@
-Fork of UniversalViewer/uv-hello-world that incorporates the manifest selection functionality from UniversalViewer/examples.
+Fork of UniversalViewer/uv-hello-world that incorporates the Manifest URL-parsing functionality from UniversalViewer/examples.
 
 #### Prerequisites
 
