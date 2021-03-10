@@ -46,7 +46,7 @@
 
     // Observing store for changes.
     var previousState = null;
-    miradorInstance.store.subscribe(() => {
+    miradorInstance.store.subscribe(function () {
         var state = miradorInstance.store.getState();
         if (previousState) {
             var prevWindow = previousState.windows['window-1'];
