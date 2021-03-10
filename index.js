@@ -38,10 +38,13 @@ function extractCanvasId(uv) {
 }
 
 function logEvent(type, payload) {
-    payload.type = type;
     $.post({
         url: '/api/event',
-        data: payload,
+        contentType: 'application/json',
+        data: JSON.stringify({
+            'type': type,
+            ...payload
+        }),
         dataType: 'json',
         success: function() {
             console.log('Successfully logged event [' + type + '] with payload [' + JSON.stringify(payload) + ']');
