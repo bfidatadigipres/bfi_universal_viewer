@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/bfidatadigipres/bfi_universal_viewer#readme",
   "dependencies": {
+    "core-js": "^3.9.1",
     "http-server": "^0.12.3",
     "universalviewer": "^3.1.1"
   },
