@@ -12,7 +12,7 @@
 <div id="mirador" class="mirador"></div>
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/mirador@3.0.0/dist/mirador.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/fetch-polyfill@0.8.2/fetch.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
 <script type="text/javascript">
 
     // Full list of settings available at: https://github.com/ProjectMirador/mirador/blob/master/src/config/settings.js
@@ -85,16 +85,19 @@
 
     function logEvent(type, payload) {
         payload.type = type;
-        fetch('/api/event', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-        }).then(function (res) {
-            if (res.status === 403) {
-                // Redirect?
-            }
-            console.log('Successfully logged event [' + type + '] with payload [' + JSON.stringify(payload) + ']');
-        })
+        axios.post('/api/event', payload, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            validateStatus: status => status === 204
+        }).catch(error => {
+            console.error('Got [' + JSON.stringify(error) + '] logging event [' + JSON.stringify(payload) + ']');
+            logout();
+        });
+    }
+
+    function logout() {
+        window.location.replace('/logout')
     }
 
     function getManifestFromHash() {

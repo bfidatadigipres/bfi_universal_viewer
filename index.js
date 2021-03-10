@@ -40,6 +40,9 @@ function extractCanvasId(uv) {
 function logEvent(type, payload) {
     payload.type = type;
     axios.post('/api/event', payload, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
         validateStatus: status => status === 204
     }).catch(error => {
         console.error('Got [' + JSON.stringify(error) + '] logging event [' + JSON.stringify(payload) + ']');
