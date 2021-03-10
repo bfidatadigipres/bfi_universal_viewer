@@ -44,7 +44,7 @@ function logEvent(type, payload) {
         data: payload,
         dataType: 'json',
         success: function() {
-            console.log('Successfully logged event [' + type + '] with payload [' + payload + ']');
+            console.log('Successfully logged event [' + type + '] with payload [' + JSON.stringify(payload) + ']');
         }
     });
 }
