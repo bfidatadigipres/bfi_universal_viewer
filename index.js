@@ -40,6 +40,7 @@ function extractCanvasId(uv) {
 function logEvent(type, payload) {
     $.post({
         url: '/api/event',
+        contentType: 'application/json',
         data: {
             'type': type,
             ...payload
