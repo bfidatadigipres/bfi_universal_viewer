@@ -89,7 +89,10 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
-        }).then(function () {
+        }).then(function (res) {
+            if (res.status === 403) {
+                // Redirect?
+            }
             console.log('Successfully logged event [' + type + '] with payload [' + JSON.stringify(payload) + ']');
         })
     }
