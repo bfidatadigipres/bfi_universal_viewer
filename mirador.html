@@ -89,7 +89,7 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-            validateStatus: status => status === 204
+            validateStatus: status => status === 200 || status === 204
         }).catch(error => {
             console.error('Got [' + JSON.stringify(error) + '] logging event [' + JSON.stringify(payload) + ']');
             logout();

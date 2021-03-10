@@ -2,10 +2,29 @@ var uv;
 
 window.addEventListener('uvLoaded', function (e) {
 
+    var manifest = Utils.Urls.getHashParameter('manifest');
+    var urlDataProvider = new UV.URLDataProvider();
+    var collectionIndex = urlDataProvider.get('c');
+
+    if(!manifest) {
+        manifest = 'https://bfinationalarchivemanifest.bfi.org.uk/works/150784974/manifest.json'
+    }
+
     uv = createUV('#uv', {
-        iiifResourceUri: 'https://bfinationalarchivemanifest.bfi.org.uk/works/150784974/manifest.json',
-        configUri: 'uv-config.json'
-    }, new UV.URLDataProvider());
+        iiifResourceUri: manifest,
+        configUri: 'uv-config.json',
+        collectionIndex: (collectionIndex !== undefined) ? Number(collectionIndex) : undefined,
+        manifestIndex: Number(urlDataProvider.get('m', 0)),
+        sequenceIndex: Number(urlDataProvider.get('s', 0)),
+        canvasIndex: Number(urlDataProvider.get('cv', 0)),
+        rotation: Number(urlDataProvider.get('r', 0)),
+        rangeId: urlDataProvider.get('rid', ''),
+        xywh: urlDataProvider.get('xywh', '')
+    }, urlDataProvider);
+
+    uv.on('created', function() {
+        Utils.Urls.setHashParameter('manifest', manifest);
+    })
 
     uv.on('showDownloadDialogue', function () {
         logEvent('download_panel_opened', {
@@ -43,7 +62,7 @@ function logEvent(type, payload) {
         headers: {
             'Content-Type': 'application/json',
         },
-        validateStatus: status => status === 204
+        validateStatus: status => status === 200 || status === 204
     }).catch(error => {
         console.error('Got [' + JSON.stringify(error) + '] logging event [' + JSON.stringify(payload) + ']');
         logout();
