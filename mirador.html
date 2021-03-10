@@ -63,8 +63,8 @@
             // Canvas changed.
             if (prevWindow.canvasId !== newWindow.canvasId) {
                 logEvent('image_changed', {
-                    manifestId: newWindow.manifestId,
-                    canvasId: newWindow.canvasId,
+                    manifest: newWindow.manifestId,
+                    canvas: newWindow.canvasId,
                 })
             }
         }
