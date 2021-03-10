@@ -1,4 +1,4 @@
-let uv;
+var uv;
 
 window.addEventListener('uvLoaded', function (e) {
 
@@ -38,12 +38,10 @@ function extractCanvasId(uv) {
 }
 
 function logEvent(type, payload) {
+    payload.type = type;
     $.post({
         url: '/api/event',
-        data: {
-            'type': type,
-            ...payload
-        },
+        data: payload,
         dataType: 'json',
         success: function() {
             console.log('Successfully logged event [' + type + '] with payload [' + payload + ']');
