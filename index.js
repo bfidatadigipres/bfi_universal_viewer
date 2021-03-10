@@ -41,10 +41,10 @@ function logEvent(type, payload) {
     $.post({
         url: '/api/event',
         contentType: 'application/json',
-        data: {
+        data: JSON.stringify({
             'type': type,
             ...payload
-        },
+        }),
         dataType: 'json',
         success: function() {
             console.log('Successfully logged event [' + type + '] with payload [' + payload + ']');
