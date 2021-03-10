@@ -38,16 +38,15 @@ function extractCanvasId(uv) {
 }
 
 function logEvent(type, payload) {
-    $.post({
-        url: '/api/event',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            'type': type,
-            ...payload
-        }),
-        dataType: 'json',
-        success: function() {
-            console.log('Successfully logged event [' + type + '] with payload [' + JSON.stringify(payload) + ']');
-        }
+    payload.type = type;
+    axios.post('/api/event', payload, {
+        validateStatus: status => status === 204
+    }).catch(error => {
+        console.error('Got [' + JSON.stringify(error) + '] logging event [' + JSON.stringify(payload) + ']');
+        logout();
     });
+}
+
+function logout() {
+    window.location.replace('/logout')
 }
