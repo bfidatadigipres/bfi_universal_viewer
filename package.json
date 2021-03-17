@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "copy": "rimraf uv && cp -R node_modules/universalviewer/uv uv",
+    "copy": "rimraf uv && unzip node_modules/universalviewer/dist/uv.zip -d uv",
     "start": "npx serve -p 42001",
     "postinstall": "npm run copy"
   },
@@ -20,10 +20,12 @@
   },
   "homepage": "https://github.com/bfidatadigipres/bfi_universal_viewer#readme",
   "dependencies": {
+    "core-js": "^3.9.1",
     "http-server": "^0.12.3",
-    "universalviewer": "^3.0.22"
+    "universalviewer": "^3.1.1"
   },
   "devDependencies": {
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "webpack": "^4.46.0"
   }
 }

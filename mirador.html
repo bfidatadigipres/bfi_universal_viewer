@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="favicon.ico">
+    <title>BFI Mirador</title>
+</head>
+<body>
+
+<div id="mirador" class="mirador"></div>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mirador@3.0.0/dist/mirador.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+<script type="text/javascript">
+
+    // Full list of settings available at: https://github.com/ProjectMirador/mirador/blob/master/src/config/settings.js
+    var miradorInstance = Mirador.viewer({
+        id: 'mirador',
+        windows: [
+            {
+                id: 'window-1',
+                imageToolsEnabled: true,
+                allowClose: false,
+                allowMaximize: false,
+                sideBarOpenByDefault: true,
+                manifestId: getManifestFromHash() || 'https://bfinationalarchivemanifest.bfi.org.uk/works/150784974/manifest.json',
+            },
+        ],
+        workspaceControlPanel: {
+            enabled: false,
+        },
+        theme: {
+            palette: {
+                primary: {
+                    main: '#333',
+                },
+                shades: {
+                    dark: '#ffffff',
+                    main: '#ffffff',
+                    light: '#fffff',
+                },
+            },
+        }
+    });
+
+    // Observing store for changes.
+    var previousState = null;
+    miradorInstance.store.subscribe(function () {
+        var state = miradorInstance.store.getState();
+        if (previousState) {
+            var prevWindow = previousState.windows['window-1'];
+            var newWindow = state.windows['window-1'];
+
+            // Manifest changed.
+            if (prevWindow.manifestId !== newWindow.manifestId) {
+                logEvent('resource_loaded', {
+                    uri: newWindow.manifestId,
+                })
+            }
+
+            // Canvas changed.
+            if (prevWindow.canvasId !== newWindow.canvasId) {
+                logEvent('image_changed', {
+                    manifest: newWindow.manifestId,
+                    canvas: newWindow.canvasId,
+                })
+            }
+        }
+        previousState = state;
+    });
+
+    // Observing hash for changes
+    window.addEventListener('hashchange', function() {
+        var newManifest = getManifestFromHash();
+        if (newManifest) {
+            miradorInstance.store.dispatch(
+                Mirador.actions.updateWindow('window-1', {
+                    manifestId: newManifest,
+                })
+            );
+        }
+    }, false);
+
+    function logEvent(type, payload) {
+        payload.type = type;
+        axios.post('/api/event', payload, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            validateStatus: status => status === 200 || status === 204
+        }).catch(error => {
+            console.error('Got [' + JSON.stringify(error) + '] logging event [' + JSON.stringify(payload) + ']');
+            logout();
+        });
+    }
+
+    function logout() {
+        window.location.replace('/logout')
+    }
+
+    function getManifestFromHash() {
+        var matches = location.hash.match(/manifest=(.*)&?/);
+        if (matches && matches[1]) {
+            return matches[1];
+        }
+        return null;
+    }
+</script>
+</body>
+</html>
