@@ -7,7 +7,7 @@ window.addEventListener('uvLoaded', function (e) {
     var collectionIndex = urlDataProvider.get('c');
 
     if(!manifest) {
-        manifest = 'https://bfinationalarchivemanifest.bfi.org.uk/works/150784974/manifest.json'
+        manifest = 'https://bfinationalarchivemanifest.bfi.org.uk/collections/stills.json'
     }
 
     uv = createUV('#uv', {
