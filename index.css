@@ -67,3 +67,24 @@ body {
     background-color: #10859e;
     border-color: #0e758b;
 }
+
+#uv-container {
+    position: relative;
+}
+
+#logout {
+    top: 0;
+    right: 0;
+    position: absolute;
+    padding: 10px;
+}
+
+#logout a {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    color: #ffffff;
+}
