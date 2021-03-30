@@ -82,6 +82,7 @@ body {
 }
 
 #logout a {
+    font-family: sans-serif;
     font-size: 12px;
     font-weight: normal;
     line-height: 1.42857143;
