@@ -79,7 +79,6 @@ body {
     left: 0;
     position: absolute;
     z-index: 99999999;
-    padding: 10px;
 }
 
 #logout a {
@@ -90,4 +89,6 @@ body {
     vertical-align: middle;
     border: 1px solid transparent;
     color: #ffffff;
+    padding: 10px;
+    display: inline-block;
 }
