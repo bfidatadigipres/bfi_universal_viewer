@@ -3,7 +3,7 @@ var uv;
 requirejs.onResourceLoad = function (context, map, depArray) {
     if (map.name === 'lib/manifesto.js') {
         const originalLoad = window.Manifesto.loadManifest;
-        window.Manifesto.loadManifest = (url) => {
+        window.Manifesto.Utils.loadResource = window.Manifesto.loadManifest = (url) => {
             return axios
                 .get(url, { withCredentials: true })
                 .then(function(r) {
