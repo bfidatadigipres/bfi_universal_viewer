@@ -9,7 +9,7 @@ requirejs.onResourceLoad = function (context, map, depArray) {
                 .then(function(r) {
                     return r.data;
                 })
-                // Remove if
+                // Remove if fallback behaviour is not desired
                 .catch(function (err) {
                     return axios.get(url).then(function(r){ return r.data });
                 });
