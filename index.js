@@ -1,5 +1,51 @@
 var uv;
 
+
+
+//
+//
+// require(['modules/uv-seadragoncenterpanel-module/SeadragonCenterPanel'], panel => {
+//     const createUI = panel.SeadragonCenterPanel.prototype.createUI;
+//
+//     panel.SeadragonCenterPanel.prototype.createUI = (function() {
+//
+//         console.log(window.OpenSeadragon);
+//
+//         const OSD = window.OpenSeadragon;
+//
+//         // function NewOpenSeadragon(config) {
+//         //     config.ajaxWithCredentials = true;
+//         //     config.loadWithAjax = true;
+//         //     return OSD(config);
+//         // }
+//
+//         // window.OpenSeadragon.Viewer = NewOpenSeadragon;
+//
+//         const addTiledImage = OSD.Viewer.prototype.addTiledImage;
+//
+//         OSD.Viewer.prototype.addTiledImage = function (options) {
+//
+//             console.log(options);
+//
+//             options.ajaxWithCredentials = true;
+//             options.loadTilesWithAjax = true;
+//             options.crossOriginPolicy = true;
+//
+//             return addTiledImage.call(this, options);
+//         }
+//
+//         createUI.call(this);
+//         this.viewer.ajaxWithCredentials = true;
+//         this.viewer.loadWithAjax = true;
+//         console.log(this.viewer);
+//     });
+// })
+
+$.ajaxSetup({
+    xhrFields: {withCredentials: true}
+})
+
+
 requirejs.onResourceLoad = function (context, map, depArray) {
     if (map.name === 'lib/manifesto.js') {
         const originalLoad = window.Manifesto.loadManifest;
