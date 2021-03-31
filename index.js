@@ -1,5 +1,23 @@
 var uv;
 
+requirejs.onResourceLoad = function (context, map, depArray) {
+    if (map.name === 'lib/manifesto.js') {
+        const originalLoad = window.Manifesto.loadManifest;
+        window.Manifesto.loadManifest = (url) => {
+            return axios
+                .get(url, { withCredentials: true })
+                .then(function(r) {
+                    return r.data;
+                })
+                // Remove if
+                .catch(function (err) {
+                    return axios.get(url).then(function(r){ return r.data });
+                });
+        };
+    }
+}
+
+
 window.addEventListener('uvLoaded', function (e) {
 
     var manifest = Utils.Urls.getHashParameter('manifest');
