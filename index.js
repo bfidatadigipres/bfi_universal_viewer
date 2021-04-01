@@ -1,7 +1,9 @@
 var uv;
 
 $.ajaxSetup({
-    xhrFields: {withCredentials: true},
+    xhrFields: {
+        withCredentials: true
+    },
     beforeSend: function(jqXHR, settings) {
         jqXHR.requestUrl = settings.url
     },
