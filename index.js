@@ -1,5 +1,35 @@
 var uv;
 
+$.ajaxSetup({
+    xhrFields: {
+        withCredentials: true
+    },
+    beforeSend: function(jqXHR, settings) {
+        jqXHR.requestUrl = settings.url
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+        console.error('Got [' + errorThrown + '] logging request [' + jqXHR.requestUrl + ']');
+        logout();
+    }
+})
+
+requirejs.onResourceLoad = function (context, map, depArray) {
+    if (map.name === 'lib/manifesto.js') {
+        const originalLoad = window.Manifesto.loadManifest;
+        window.Manifesto.Utils.loadResource = window.Manifesto.loadManifest = function (url) {
+            return axios.get(url, {
+                withCredentials: true,
+                validateStatus: status => status === 200 || status === 204
+            }).then(function(r) {
+                return r.data;
+            }).catch(function (error) {
+                console.error('Got [' + JSON.stringify(error) + '] logging request [' + url + ']');
+                logout();
+            });
+        };
+    }
+}
+
 window.addEventListener('uvLoaded', function (e) {
 
     var manifest = Utils.Urls.getHashParameter('manifest');
@@ -63,7 +93,7 @@ function logEvent(type, payload) {
             'Content-Type': 'application/json',
         },
         validateStatus: status => status === 200 || status === 204
-    }).catch(error => {
+    }).catch(function (error) {
         console.error('Got [' + JSON.stringify(error) + '] logging event [' + JSON.stringify(payload) + ']');
         logout();
     });
