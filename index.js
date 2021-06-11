@@ -42,7 +42,7 @@ window.addEventListener('uvLoaded', function (e) {
 
     uv = createUV('#uv', {
         iiifResourceUri: manifest,
-        configUri: 'uv-config.json',
+        configUri: 'config.json',
         collectionIndex: (collectionIndex !== undefined) ? Number(collectionIndex) : undefined,
         manifestIndex: Number(urlDataProvider.get('m', 0)),
         sequenceIndex: Number(urlDataProvider.get('s', 0)),
