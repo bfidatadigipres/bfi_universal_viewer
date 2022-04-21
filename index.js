@@ -9,7 +9,9 @@ $.ajaxSetup({
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.error('Got [' + errorThrown + '] logging request [' + jqXHR.requestUrl + ']');
-        logout();
+        if (jqXHR.status == 401) {
+            logout();
+        }
     }
 })
 
@@ -24,7 +26,9 @@ requirejs.onResourceLoad = function (context, map, depArray) {
                 return r.data;
             }).catch(function (error) {
                 console.error('Got [' + JSON.stringify(error) + '] logging request [' + url + ']');
-                logout();
+                if (error.response.status == 401) {
+                    logout();
+                }
             });
         };
     }
@@ -95,6 +99,9 @@ function logEvent(type, payload) {
         validateStatus: status => status === 200 || status === 204
     }).catch(function (error) {
         console.error('Got [' + JSON.stringify(error) + '] logging event [' + JSON.stringify(payload) + ']');
+        if (error.response.status == 401) {
+            logout();
+        }
         logout();
     });
 }
